@@ -1,0 +1,84 @@
+fragment ProductItem on Product {
+  id
+  name
+  description
+  assets {
+    id
+    name
+    source
+    preview
+    width
+    height
+  }
+  variants {
+    id
+    name
+    price
+  }
+}
+
+fragment OrderItem on Order {
+  __typename
+  id
+  code
+  state
+  total
+  lines {
+    unitPrice
+    quantity
+    productVariant {
+      id
+      name
+      product {
+        id
+        assets {
+          id
+          preview
+        }
+      }
+      productId
+      assets {
+        name
+        id
+        type
+        preview
+      }
+    }
+  }
+  customer {
+    id
+    updatedAt
+    firstName
+    lastName
+    emailAddress
+    user {
+      id
+      verified
+      identifier
+      lastLogin
+    }
+  }
+}
+
+query getProducts {
+  products(options: { take: 5 }) {
+    totalItems
+    items {
+      ...ProductItem
+    }
+  }
+}
+
+query getOrder {
+  activeOrder {
+    ...OrderItem
+  }
+}
+
+mutation addItemToOrder($productVariantId: ID!, $quantity: Int!) {
+  addItemToOrder(productVariantId: $productVariantId, quantity: $quantity) {
+    ... on Order {
+      ...OrderItem
+    }
+  }
+}
