@@ -31,10 +31,28 @@ Even thought the app is already connected to a graphql endpoint, the trainee can
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-First, run the development server:
+1. Clone the repo
+
+```bash
+git clone git@github.com:emateu/santex-challenge.git
+```
+
+2. Install the dependencies
+
+```bash
+pnpm install
+```
+
+3. Run the development server:
 
 ```bash
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Run the tests:
+
+```bash
+pnpm test
+```
+
+Then, open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
